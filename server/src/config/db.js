@@ -16,10 +16,11 @@ const connectDB = async () => {
     console.warn(`[MongoDB] Primary connection failed: ${err.message}`);
 
     // In Vercel serverless functions, do not attempt to run binary daemons
-    if (!process.env.VERCEL) {
+    if (!process.env.VERCEL && !process.env.AWS_LAMBDA_FUNCTION_NAME) {
       console.log(`[MongoDB] Initializing automated In-Memory MongoDB fallback server for seamless local testing...`);
       try {
-        const { MongoMemoryServer } = require('mongodb-memory-server');
+        const memModule = 'mongodb-memory-server';
+        const { MongoMemoryServer } = require(memModule);
         const mongod = await MongoMemoryServer.create();
         const memUri = mongod.getUri();
         const memConn = await mongoose.connect(memUri);
