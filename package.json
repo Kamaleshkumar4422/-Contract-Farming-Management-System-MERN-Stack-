@@ -4,10 +4,22 @@
   "description": "Full-Stack MERN Contract Farming Management System",
   "scripts": {
     "dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "build": "cd client && npm install && npm run build",
     "start:server": "cd server && npm run dev",
     "start:client": "cd client && npm run dev",
     "install:all": "npm install && cd server && npm install && cd ../client && npm install",
     "seed": "cd server && npm run seed"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "qrcode": "^1.5.3"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
